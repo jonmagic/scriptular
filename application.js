@@ -109,25 +109,41 @@
     };
 
     Results.prototype.matchResults = function(value) {
-      var match, _i, _len, _ref;
+      var index, length, match, string, _i, _len, _ref;
+      console.log(value, value.match(this.expression.value));
+      string = '';
       _ref = value.match(this.expression.value);
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         match = _ref[_i];
-        value = this.expression.option.val() === 'g' ? value.replace(new RegExp(match, 'g'), "<span>" + match + "</span>") : value.replace(new RegExp(match), "<span>" + match + "</span>");
+        index = value.indexOf(match);
+        length = match.length;
+        string += value.slice(0, index);
+        string += "<span>" + (value.slice(index, index + length)) + "</span>";
+        value = value.slice(index + 1);
       }
-      return $('ul#results').append("<li>" + value + "</li>");
+      return $('ul#results').append("<li>" + string + "</li>");
     };
 
     Results.prototype.matchGroups = function(value, count) {
-      var match, _i, _len, _ref, _results;
+      var match, _i, _j, _len, _len2, _ref, _ref2, _results, _results2;
       $('ul#groups').append("<li id='match_" + count + "'><h3>Match " + count + "</h3><ol></ol></li>");
-      _ref = value.match(this.expression.value);
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        match = _ref[_i];
-        _results.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
+      if (this.expression.option.val() === 'g') {
+        _ref = value.match(this.expression.value);
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          match = _ref[_i];
+          _results.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
+        }
+        return _results;
+      } else {
+        _ref2 = value.match(this.expression.value).slice(1);
+        _results2 = [];
+        for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+          match = _ref2[_j];
+          _results2.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
+        }
+        return _results2;
       }
-      return _results;
     };
 
     return Results;

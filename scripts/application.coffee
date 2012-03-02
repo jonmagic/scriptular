@@ -62,19 +62,27 @@ class Results
       $('#error').show()
 
   matchResults: (value) ->
-    for match in value.match(@expression.value)
-      value = if @expression.option.val() == 'g'
-        value.replace(new RegExp(match, 'g'), "<span>#{match}</span>")
-      else
-        value.replace(new RegExp(match), "<span>#{match}</span>")
+    console.log(value, value.match(@expression.value))
+    string = ''
 
-    $('ul#results').append("<li>#{value}</li>")
+    for match in value.match(@expression.value)
+      index = value.indexOf(match)
+      length = match.length
+      string += value.slice(0, index)
+      string += "<span>#{value.slice(index, index + length)}</span>"
+      value = value.slice(index + 1)
+
+    $('ul#results').append("<li>#{string}</li>")
 
   matchGroups: (value, count) ->
     $('ul#groups').append("<li id='match_#{count}'><h3>Match #{count}</h3><ol></ol></li>")
 
-    for match in value.match(@expression.value)
-      $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
+    if @expression.option.val() == 'g'
+      for match in value.match(@expression.value)
+        $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
+    else
+      for match in value.match(@expression.value)[1..-1]
+        $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
 
 class App
   constructor: ->
