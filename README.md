@@ -15,7 +15,7 @@ A clone of [Rubular](http://rubular.com) for javascript regular expressions.
 
 ## CONTRIBUTE
 
-If you'd like to hack on Twelve, start by forking the repo on GitHub:
+If you'd like to hack on Scriptular, start by forking the repo on GitHub:
 
 https://github.com/jonmagic/scriptular
 
