@@ -9,7 +9,9 @@ class Expression extends Spine.Controller
     'keyup input': 'onKeyPress'
 
   onKeyPress: (event) ->
-    @value = new RegExp(@regexp.val(), @option.val())
+    try
+      @value = new RegExp(@regexp.val(), @option.val())
+    catch error
     @.trigger 'update'
 
 class TestStrings extends Spine.Controller
@@ -32,15 +34,28 @@ class Results
     @test_strings.bind 'update', @compile
 
   compile: =>
-    $('#output').show()
     $('ul#results').empty()
     $('ul#groups').empty()
     count = 1
 
-    for value in @test_strings.values
-      @matchResults(value)
-      @matchGroups(value, count)
-      count += 1
+    if @expression.regexp.val() == '' && @test_strings.input.val() == ''
+      $('#error').hide()
+      $('#output').hide()
+      $('#intro').show()
+      return true
+
+    try
+      for value in @test_strings.values
+        @matchResults(value)
+        @matchGroups(value, count)
+        count += 1
+      $('#intro').hide()
+      $('#error').hide()
+      $('#output').show()
+    catch error
+      $('#intro').hide()
+      $('#output').hide()
+      $('#error').show()
 
   matchResults: (value) ->
     first  = value.match(@expression.value)[0]

@@ -2,28 +2,54 @@
 <head>
   <title>Scriptular</title>
   <link rel="stylesheet" type="text/css" href="application.css">
+  <link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <script src="spine.js" type="text/javascript"></script>
   <script src="application.js" type="text/javascript"></script>
 </head>
 <body>
-  <h1>Scriptular</h1>
-  <div id="main">
-    <div id="expression">
-      <h2>Regular Expression</h2>
-      /<input name="expression" />/<input name="option" />
+  <div id="container">
+    <div id="header">
+      <h1>Scriptular</h1>
+      <h2>A javascript regular expression editor</h2>
+    </div>
+    <div id="main">
+      <div id="expression">
+        <h2>Regular Expression</h2>
+        /<input name="expression" />/<input name="option" />
+      </div>
+
+      <div id="test_strings">
+        <h2>Test Strings</h2>
+        <textarea name="test_strings"></textarea>
+      </div>
+
+      <div id="intro">
+        <p>Scriptular is a javascript-based regular expression editor.</p>
+
+        <p>Before the summer of 2011 I never took the time to dig into regular expressions and actually learn how they work. Then <a href="http://hubot.github.com">Hubot</a> came along and suddenly regular expressions were cool.</p>
+
+        <p>Immediately I began writing hubot scripts and started using <a href="http://rubular.com">Rubular</a> to test my regular expressions. Unforunately there are some differences between Ruby's regular expressions and the myriad of implementations in javascript (and specifically the V8 implementation that hubot uses), so I needed a new Rubular, one for javascripts.</p>
+
+        <p>So I created <a href="http://scriptular.com">Scriptular</a> and started regular expressing myself ;) This is a beta, probably has a ton of bugs, but you have to start somewhere. Also, since it uses your browsers javascript interpreter there will be differences between your results here and other browsers and even V8, so this is not necessarily the perfect editor for regular expressions in hubot.</p>
+
+        <p>Having said that, I hope someday to have a V8 option to run against so you can write perfect regular expressions for hubot everytime.</p>
+      </div>
+
+      <div id="error">
+        <p>No Matches</p>
+      </div>
+
+      <div id="output">
+        <h2>Match Results</h2>
+        <ul id="results"></ul>
+        <h2>Match Groups</h2>
+        <ul id="groups"></ul>
+      </div>
     </div>
 
-    <div id="test_strings">
-      <h2>Test Strings</h2>
-      <textarea name="test_strings"></textarea>
-    </div>
-
-    <div id="output">
-      <h2>Match Results</h2>
-      <ul id="results"></ul>
-      <h2>Match Groups</h2>
-      <ul id="groups"></ul>
+    <div id="footer">
+      <p>Made by <a href="http://theprogrammingbutler.com">Hoyt</a>. To contribute or report an issue visit <a href="http://github.com/jonmagic/scriptular">GitHub</a>. Follow me on <a href="http://twitter.com/jonmagic">Twitter</a>.</p>
     </div>
   </div>
 </body>

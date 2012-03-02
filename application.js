@@ -24,7 +24,11 @@
     };
 
     Expression.prototype.onKeyPress = function(event) {
-      this.value = new RegExp(this.regexp.val(), this.option.val());
+      try {
+        this.value = new RegExp(this.regexp.val(), this.option.val());
+      } catch (error) {
+
+      }
       return this.trigger('update');
     };
 
@@ -72,20 +76,32 @@
     }
 
     Results.prototype.compile = function() {
-      var count, value, _i, _len, _ref, _results;
-      $('#output').show();
+      var count, value, _i, _len, _ref;
       $('ul#results').empty();
       $('ul#groups').empty();
       count = 1;
-      _ref = this.test_strings.values;
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        value = _ref[_i];
-        this.matchResults(value);
-        this.matchGroups(value, count);
-        _results.push(count += 1);
+      if (this.expression.regexp.val() === '' && this.test_strings.input.val() === '') {
+        $('#error').hide();
+        $('#output').hide();
+        $('#intro').show();
+        return true;
       }
-      return _results;
+      try {
+        _ref = this.test_strings.values;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          value = _ref[_i];
+          this.matchResults(value);
+          this.matchGroups(value, count);
+          count += 1;
+        }
+        $('#intro').hide();
+        $('#error').hide();
+        return $('#output').show();
+      } catch (error) {
+        $('#intro').hide();
+        $('#output').hide();
+        return $('#error').show();
+      }
     };
 
     Results.prototype.matchResults = function(value) {
@@ -97,6 +113,8 @@
 
     Results.prototype.matchGroups = function(value, count) {
       var match, _i, _len, _ref, _results;
+      if (value.match(this.expression.value).join() === '') return;
+      console.log(value.match(this.expression.value));
       $('ul#groups').append("<li id='match_" + count + "'><h3>Match " + count + "</h3><ol></ol></li>");
       _ref = value.match(this.expression.value).slice(1);
       _results = [];

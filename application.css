@@ -59,35 +59,66 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* my styles */
 body {
-  font-family: Helvetica;
+  color: #080901;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
+  background-color: #25D5E2;
 }
 
-h1 {
-  font-size: 2em;
+#container {
+  width: 750px;
+  margin: 0 auto;
+}
+
+#header {
+  position: relative;
+}
+
+#header h1 {
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 5em;
   font-weight: bold;
-  margin: 1em 0;
-  text-align: center;
+  margin: 0.1em 0;
   width: 100%;
+}
+
+#header h2 {
+  color: #FFFFFF;
+  position: absolute;
+  top: 40%;
+  right: 0px;
 }
 
 h2 {
   font-size: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #080901;
+}
+
+#main a {
+  color: #F7296F;
 }
 
 #main {
-  background-color: #eeeeee;
-  border: 3px solid #666666;
+  background-color: #FFFFFF;
+  border: 3px solid #080901;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
   -khtml-border-radius: 10px;
   border-radius: 10px;
-  margin: 0 auto;
-  padding: 1em;
-  width: 600px;
+  margin-top: 20px;
+  padding: 20px;
+  overflow: hidden;
 }
 
 input, textarea {
@@ -110,7 +141,7 @@ input, textarea {
 
 #expression input[name=expression] {
   margin: 0 4px;
-  width: 530px;
+  width: 635px;
 }
 
 #expression input[name=option] {
@@ -123,7 +154,7 @@ input, textarea {
   width: 100%;
 }
 
-#output {
+#output, #error {
   display: none;
 }
 
@@ -176,4 +207,9 @@ input, textarea {
   list-style-type: decimal;
   margin-bottom: 10px;
   padding-left: 30px;
+}
+
+#footer {
+  margin-top: 20px;
+  text-align: center;
 }
