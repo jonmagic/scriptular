@@ -84,6 +84,10 @@
         $('#error').hide();
         $('#output').hide();
         $('#intro').show();
+      } else if (this.expression.regexp.val() === '') {
+        $('#intro').hide();
+        $('#output').hide();
+        $('#error').show();
         return true;
       }
       try {
@@ -105,18 +109,19 @@
     };
 
     Results.prototype.matchResults = function(value) {
-      var first, second;
-      first = value.match(this.expression.value)[0];
-      second = value.split(value.match(this.expression.value)[0]);
-      return $('ul#results').append("<li><span>" + first + "</span>" + second.slice(1) + "</li>");
+      var match, _i, _len, _ref;
+      _ref = value.match(this.expression.value);
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        match = _ref[_i];
+        value = this.expression.option.val() === 'g' ? value.replace(new RegExp(match, 'g'), "<span>" + match + "</span>") : value.replace(new RegExp(match), "<span>" + match + "</span>");
+      }
+      return $('ul#results').append("<li>" + value + "</li>");
     };
 
     Results.prototype.matchGroups = function(value, count) {
       var match, _i, _len, _ref, _results;
-      if (value.match(this.expression.value).join() === '') return;
-      console.log(value.match(this.expression.value));
       $('ul#groups').append("<li id='match_" + count + "'><h3>Match " + count + "</h3><ol></ol></li>");
-      _ref = value.match(this.expression.value).slice(1);
+      _ref = value.match(this.expression.value);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         match = _ref[_i];

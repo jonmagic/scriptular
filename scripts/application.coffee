@@ -42,6 +42,10 @@ class Results
       $('#error').hide()
       $('#output').hide()
       $('#intro').show()
+    else if @expression.regexp.val() == ''
+      $('#intro').hide()
+      $('#output').hide()
+      $('#error').show()
       return true
 
     try
@@ -58,14 +62,18 @@ class Results
       $('#error').show()
 
   matchResults: (value) ->
-    first  = value.match(@expression.value)[0]
-    second = value.split(value.match(@expression.value)[0])
-    $('ul#results').append("<li><span>#{first}</span>#{second[1..-1]}</li>")
+    for match in value.match(@expression.value)
+      value = if @expression.option.val() == 'g'
+        value.replace(new RegExp(match, 'g'), "<span>#{match}</span>")
+      else
+        value.replace(new RegExp(match), "<span>#{match}</span>")
+
+    $('ul#results').append("<li>#{value}</li>")
 
   matchGroups: (value, count) ->
     $('ul#groups').append("<li id='match_#{count}'><h3>Match #{count}</h3><ol></ol></li>")
 
-    for match in value.match(@expression.value)[1..-1]
+    for match in value.match(@expression.value)
       $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
 
 class App
