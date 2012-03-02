@@ -50,8 +50,9 @@ class Results
 
     try
       for value in @test_strings.values
-        @matchResults(value)
-        @matchGroups(value, count)
+        matches = value.match(@expression.value)
+        @matchResults(value, matches)
+        @matchGroups(value, matches, count)
         count += 1
       $('#intro').hide()
       $('#error').hide()
@@ -61,11 +62,11 @@ class Results
       $('#output').hide()
       $('#error').show()
 
-  matchResults: (value) ->
-    console.log(value, value.match(@expression.value))
+  matchResults: (value, matches) ->
+    return unless matches
     string = ''
 
-    for match in value.match(@expression.value)
+    for match in matches
       index = value.indexOf(match)
       length = match.length
       string += value.slice(0, index)
@@ -74,14 +75,16 @@ class Results
 
     $('ul#results').append("<li>#{string}</li>")
 
-  matchGroups: (value, count) ->
+  matchGroups: (value, matches, count) ->
+    return unless matches
+
     $('ul#groups').append("<li id='match_#{count}'><h3>Match #{count}</h3><ol></ol></li>")
 
     if @expression.option.val() == 'g'
-      for match in value.match(@expression.value)
+      for match in matches
         $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
     else
-      for match in value.match(@expression.value)[1..-1]
+      for match in matches[1..-1]
         $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
 
 class App

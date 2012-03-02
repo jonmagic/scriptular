@@ -76,7 +76,7 @@
     }
 
     Results.prototype.compile = function() {
-      var count, value, _i, _len, _ref;
+      var count, matches, value, _i, _len, _ref;
       $('ul#results').empty();
       $('ul#groups').empty();
       count = 1;
@@ -94,8 +94,9 @@
         _ref = this.test_strings.values;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           value = _ref[_i];
-          this.matchResults(value);
-          this.matchGroups(value, count);
+          matches = value.match(this.expression.value);
+          this.matchResults(value, matches);
+          this.matchGroups(value, matches, count);
           count += 1;
         }
         $('#intro').hide();
@@ -108,13 +109,12 @@
       }
     };
 
-    Results.prototype.matchResults = function(value) {
-      var index, length, match, string, _i, _len, _ref;
-      console.log(value, value.match(this.expression.value));
+    Results.prototype.matchResults = function(value, matches) {
+      var index, length, match, string, _i, _len;
+      if (!matches) return;
       string = '';
-      _ref = value.match(this.expression.value);
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        match = _ref[_i];
+      for (_i = 0, _len = matches.length; _i < _len; _i++) {
+        match = matches[_i];
         index = value.indexOf(match);
         length = match.length;
         string += value.slice(0, index);
@@ -124,22 +124,22 @@
       return $('ul#results').append("<li>" + string + "</li>");
     };
 
-    Results.prototype.matchGroups = function(value, count) {
-      var match, _i, _j, _len, _len2, _ref, _ref2, _results, _results2;
+    Results.prototype.matchGroups = function(value, matches, count) {
+      var match, _i, _j, _len, _len2, _ref, _results, _results2;
+      if (!matches) return;
       $('ul#groups').append("<li id='match_" + count + "'><h3>Match " + count + "</h3><ol></ol></li>");
       if (this.expression.option.val() === 'g') {
-        _ref = value.match(this.expression.value);
         _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          match = _ref[_i];
+        for (_i = 0, _len = matches.length; _i < _len; _i++) {
+          match = matches[_i];
           _results.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
         }
         return _results;
       } else {
-        _ref2 = value.match(this.expression.value).slice(1);
+        _ref = matches.slice(1);
         _results2 = [];
-        for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
-          match = _ref2[_j];
+        for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
+          match = _ref[_j];
           _results2.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
         }
         return _results2;
