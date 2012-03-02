@@ -1,17 +1,22 @@
 # Scriptular
 
-A clone of [Rubular](http://rubular.com) for javascript regular expressions.
+A regular expression editor for javascript.
 
-*Disclaimer:* Probably has a ton of bugs, this is just a first pass.
-*Another Disclaimer:* This whole project can be simplified a lot, I'm using ruby and node for development, which really isn't needed.
+## Backstory
 
-## Running for development
+Before the summer of 2011 I never took the time to dig into regular expressions and actually learn how they work. Then [Hubot](http://hubot.github.com) came along and suddenly regular expressions were cool.
+
+Immediately I began writing hubot scripts and started using [Rubular](http://rubular.com) to test my regular expressions. Unforunately there are some differences between Ruby's regular expressions and the myriad of implementations in javascript (and specifically the V8 implementation that hubot uses), so I needed a new Rubular, one for javascripts.
+
+So I created [Scriptular](http://scriptular.com) and started regular expressing myself ;) This is a beta, probably has a ton of bugs, but you have to start somewhere. Also, since it uses your browsers javascript interpreter there will be differences between your results here and other browsers and even V8, so this is not necessarily the perfect editor for regular expressions in hubot.
+
+Having said that, I hope someday to have a V8 option to run against so you can write perfect regular expressions for hubot everytime.
+
+## Compiling Coffeescript in Development
 
 * clone the repo
-* npm install
-* bundle
-* foreman start
-
+* npm install -g coffee-script
+* cake build
 
 ## CONTRIBUTE
 
