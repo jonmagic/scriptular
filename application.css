@@ -1,4 +1,4 @@
-/* line 17, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* RESET */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,56 +20,49 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 114, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
-/* line 12, ../../styles/application.sass */
+
+/* my styles */
 body {
   font-family: Helvetica;
   font-size: 18px;
 }
 
-/* line 16, ../../styles/application.sass */
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -78,13 +71,11 @@ h1 {
   width: 100%;
 }
 
-/* line 23, ../../styles/application.sass */
 h2 {
   font-size: 20px;
   margin-bottom: 5px;
 }
 
-/* line 27, ../../styles/application.sass */
 #main {
   background-color: #eeeeee;
   border: 3px solid #666666;
@@ -99,7 +90,6 @@ h2 {
   width: 600px;
 }
 
-/* line 35, ../../styles/application.sass */
 input, textarea {
   margin-bottom: 20px;
   background-color: white;
@@ -114,33 +104,29 @@ input, textarea {
   border-radius: 5px;
 }
 
-/* line 39, ../../styles/application.sass */
 #expression {
   font-size: 25px;
 }
-/* line 42, ../../styles/application.sass */
+
 #expression input[name=expression] {
   margin: 0 4px;
   width: 530px;
 }
-/* line 46, ../../styles/application.sass */
+
 #expression input[name=option] {
   margin-left: 4px;
   width: 40px;
 }
 
-/* line 51, ../../styles/application.sass */
 #test_strings textarea {
   height: 95px;
   width: 100%;
 }
 
-/* line 55, ../../styles/application.sass */
 #output {
   display: none;
 }
 
-/* line 58, ../../styles/application.sass */
 #results {
   background-color: white;
   border: 1px solid #666666;
@@ -154,20 +140,19 @@ input, textarea {
   border-radius: 5px;
   margin-bottom: 20px;
 }
-/* line 61, ../../styles/application.sass */
+
 #results li {
   margin-bottom: 10px;
 }
-/* line 63, ../../styles/application.sass */
+
 #results li:last-child {
   margin-bottom: 0px;
 }
-/* line 65, ../../styles/application.sass */
+
 #results span {
   background-color: #f4ff80;
 }
 
-/* line 68, ../../styles/application.sass */
 #groups {
   background-color: white;
   border: 1px solid #666666;
@@ -180,13 +165,13 @@ input, textarea {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 70, ../../styles/application.sass */
+
 #groups h3 {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
 }
-/* line 74, ../../styles/application.sass */
+
 #groups ol {
   list-style-type: decimal;
   margin-bottom: 10px;

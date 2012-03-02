@@ -1,7 +1,32 @@
-class Results extends Spine.Controller
-  elements:
-    'ol': 'list'
+$ = jQuery
 
+class Expression extends Spine.Controller
+  elements:
+    'input[name=expression]': 'regexp'
+    'input[name=option]': 'option'
+
+  events:
+    'keyup input': 'onKeyPress'
+
+  onKeyPress: (event) ->
+    @value = new RegExp(@regexp.val(), @option.val())
+    @.trigger 'update'
+
+class TestStrings extends Spine.Controller
+  elements:
+    'textarea': 'input'
+
+  events:
+    'keyup textarea': 'onKeyPress'
+
+  onKeyPress: (event) ->
+    @getValues(@input.val())
+    @.trigger 'update'
+
+  getValues: (val) ->
+    @values = val.split('\n')
+
+class Results
   constructor: (@expression, @test_strings) ->
     @expression.bind 'update', @compile
     @test_strings.bind 'update', @compile
@@ -28,4 +53,11 @@ class Results extends Spine.Controller
     for match in value.match(@expression.value)[1..-1]
       $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
 
-module.exports = Results
+class App
+  constructor: ->
+    @expression   = new Expression(el: '#expression')
+    @test_strings = new TestStrings(el: '#test_strings')
+    @results      = new Results(@expression, @test_strings)
+
+$ ->
+  new App
