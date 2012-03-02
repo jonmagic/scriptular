@@ -141,12 +141,12 @@ input, textarea {
 
 #expression input[name=expression] {
   margin: 0 4px;
-  width: 635px;
+  width: 625px;
 }
 
 #expression input[name=option] {
   margin-left: 4px;
-  width: 40px;
+  width: 50px;
 }
 
 #test_strings textarea {
