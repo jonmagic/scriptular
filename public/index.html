@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Scriptular</title>
+  <link rel="stylesheet" type="text/css" href="/styles/application.css">
+  <script src="/application.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    var $ = require("jqueryify");
+    var exports = this;
+    $(function() {
+      var App = require("index");
+      exports.app = new App();
+    });
+  </script>
+</head>
+<body>
+  <h1>Scriptular</h1>
+  <div id="main">
+    <div id="expression">
+      <h2>Regular Expression</h2>
+      /<input name="expression" />/<input name="option" />
+    </div>
+
+    <div id="test_strings">
+      <h2>Test Strings</h2>
+      <textarea name="test_strings"></textarea>
+    </div>
+
+    <div id="output">
+      <h2>Match Results</h2>
+      <ul id="results"></ul>
+      <h2>Match Groups</h2>
+      <ul id="groups"></ul>
+    </div>
+  </div>
+</body>
+</html>
