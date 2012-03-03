@@ -39,13 +39,10 @@ class Results
     count = 1
 
     if @expression.regexp.val() == '' && @test_strings.input.val() == ''
-      $('#error').hide()
-      $('#output').hide()
-      $('#intro').show()
-    else if @expression.regexp.val() == ''
-      $('#intro').hide()
-      $('#output').hide()
-      $('#error').show()
+      @showIntro()
+      return true
+    else if @expression.regexp.val() == '' || @test_strings.input.val() == ''
+      @showError()
       return true
 
     try
@@ -54,13 +51,9 @@ class Results
         @matchResults(value, matches)
         @matchGroups(value, matches, count)
         count += 1
-      $('#intro').hide()
-      $('#error').hide()
-      $('#output').show()
+      @showOutput()
     catch error
-      $('#intro').hide()
-      $('#output').hide()
-      $('#error').show()
+      @showError()
 
   matchResults: (value, matches) ->
     return unless matches
@@ -88,6 +81,21 @@ class Results
     else
       for match in matches[1..-1]
         $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
+
+  showIntro: ->
+    $('#error').hide()
+    $('#output').hide()
+    $('#intro').show()
+
+  showError: ->
+    $('#intro').hide()
+    $('#output').hide()
+    $('#error').show()
+
+  showOutput: ->
+    $('#intro').hide()
+    $('#error').hide()
+    $('#output').show()
 
 class App
   constructor: ->

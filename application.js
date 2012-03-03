@@ -81,13 +81,10 @@
       $('ul#groups').empty();
       count = 1;
       if (this.expression.regexp.val() === '' && this.test_strings.input.val() === '') {
-        $('#error').hide();
-        $('#output').hide();
-        $('#intro').show();
-      } else if (this.expression.regexp.val() === '') {
-        $('#intro').hide();
-        $('#output').hide();
-        $('#error').show();
+        this.showIntro();
+        return true;
+      } else if (this.expression.regexp.val() === '' || this.test_strings.input.val() === '') {
+        this.showError();
         return true;
       }
       try {
@@ -99,13 +96,9 @@
           this.matchGroups(value, matches, count);
           count += 1;
         }
-        $('#intro').hide();
-        $('#error').hide();
-        return $('#output').show();
+        return this.showOutput();
       } catch (error) {
-        $('#intro').hide();
-        $('#output').hide();
-        return $('#error').show();
+        return this.showError();
       }
     };
 
@@ -145,6 +138,24 @@
         }
         return _results2;
       }
+    };
+
+    Results.prototype.showIntro = function() {
+      $('#error').hide();
+      $('#output').hide();
+      return $('#intro').show();
+    };
+
+    Results.prototype.showError = function() {
+      $('#intro').hide();
+      $('#output').hide();
+      return $('#error').show();
+    };
+
+    Results.prototype.showOutput = function() {
+      $('#intro').hide();
+      $('#error').hide();
+      return $('#output').show();
     };
 
     return Results;
