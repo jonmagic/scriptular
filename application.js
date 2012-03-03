@@ -119,7 +119,7 @@
         length = match.length;
         string += value.slice(0, index);
         string += "<span>" + (value.slice(index, index + length)) + "</span>";
-        value = value.slice(index + 1);
+        value = value.slice(index + length);
       }
       return $('ul#results').append("<li>" + string + "</li>");
     };
