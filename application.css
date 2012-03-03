@@ -62,35 +62,41 @@ body {
   color: #080901;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
-  background-color: #25D5E2;
+  background: #222 url(bg.png);
+  color: #ccc;
 }
 
 #container {
-  width: 750px;
+  width: 650px;
   margin: 0 auto;
 }
 
 #header {
   position: relative;
+  overflow: hidden;
 }
 
 #header h1 {
-  font-family: 'Reenie Beanie', cursive;
-  font-size: 5em;
+  font-family: 'Reenie Beanie', cursive, sans-serif;
+  font-size: 96px;
   font-weight: bold;
   margin: 0.1em 0;
-  width: 100%;
+  color: #FFF;
+  line-height: 96px;
+  float: left;
 }
 
 #header h2 {
-  color: #FFFFFF;
-  position: absolute;
-  top: 40%;
-  right: 0px;
+  color: #aaa;
+  text-align: right;
+  line-height: 18px;
+  margin-top: 60px;
+  font-weight: 100;
+  letter-spacing: 0.1em;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
@@ -100,39 +106,48 @@ p {
 }
 
 a {
-  color: #080901;
+  color: #FFF;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+#main {
+  background-color: #FFFFFF;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  box-shadow: 0 0 30px #000;
+  border-radius: 4px;
+  padding: 30px;
+  overflow: hidden;
+  color: #333;
+}
+
+#main h2 {
+  font-weight: 700;
+  color: #369;
 }
 
 #main a {
   color: #F7296F;
 }
 
-#main {
-  background-color: #FFFFFF;
-  border: 3px solid #080901;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -khtml-border-radius: 10px;
-  border-radius: 10px;
-  margin-top: 20px;
-  padding: 20px;
-  overflow: hidden;
-}
-
-input, textarea {
+input, textarea, #results, #groups {
   margin-bottom: 20px;
   background-color: white;
-  border: 1px solid #666666;
+  border: 1px solid #ccc;
   font-size: 16px;
   padding: 10px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
 }
 
 #expression {
@@ -141,7 +156,7 @@ input, textarea {
 
 #expression input[name=expression] {
   margin: 0 4px;
-  width: 625px;
+  width: 510px;
 }
 
 #expression input[name=option] {
@@ -158,18 +173,11 @@ input, textarea {
   display: none;
 }
 
-#results {
-  background-color: white;
-  border: 1px solid #666666;
-  font-size: 16px;
-  padding: 10px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+#intro, #error, #output {
+  margin: 10px -30px -30px -30px;
+  padding: 30px;
+  background-color: #eef;
+  border-top: 1px solid #dde;
 }
 
 #results li {
@@ -185,22 +193,14 @@ input, textarea {
 }
 
 #groups {
-  background-color: white;
-  border: 1px solid #666666;
-  font-size: 16px;
-  padding: 10px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
+  margin-bottom: 0;
 }
 
 #groups h3 {
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 1em;
   margin-bottom: 5px;
+  color: #999;
+
 }
 
 #groups ol {
@@ -212,4 +212,6 @@ input, textarea {
 #footer {
   margin-top: 20px;
   text-align: center;
+  font-size: 0.9em;
+  -webkit-font-smoothing: antialiased;
 }
