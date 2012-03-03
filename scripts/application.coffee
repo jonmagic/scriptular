@@ -73,6 +73,8 @@ class Results
       string += "<span>#{value.slice(index, index + length)}</span>"
       value = value.slice(index + length)
 
+    string += value
+
     $('ul#results').append("<li>#{string}</li>")
 
   matchGroups: (value, matches, count) ->

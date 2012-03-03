@@ -121,6 +121,7 @@
         string += "<span>" + (value.slice(index, index + length)) + "</span>";
         value = value.slice(index + length);
       }
+      string += value;
       return $('ul#results').append("<li>" + string + "</li>");
     };
 
