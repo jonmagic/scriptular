@@ -18,6 +18,10 @@ Having said that, I hope someday to have a V8 option to run against so you can w
 * npm install -g coffee-script
 * cake build
 
+## Running Tests
+
+Just open SpecRunner.html in a browser to run the test suite.
+
 ## CONTRIBUTE
 
 If you'd like to hack on Scriptular, start by forking the repo on GitHub:
