@@ -25,11 +25,15 @@
 
     Expression.prototype.onKeyPress = function(event) {
       try {
-        this.value = new RegExp(this.regexp.val(), this.option.val());
+        this.value = this.buildRegex(this.regexp.val(), this.option.val());
       } catch (error) {
 
       }
       return this.trigger('update');
+    };
+
+    Expression.prototype.buildRegex = function(value, option) {
+      return new RegExp(value, option);
     };
 
     return Expression;
@@ -108,13 +112,17 @@
       string = '';
       for (_i = 0, _len = matches.length; _i < _len; _i++) {
         match = matches[_i];
+        if (value === '') break;
         index = value.indexOf(match);
         length = match.length;
         string += value.slice(0, index);
-        string += "<span>" + (value.slice(index, index + length)) + "</span>";
-        value = value.slice(index + length);
+        value = index > -1 ? (string += "<span>" + (value.slice(index, index + length)) + "</span>", value.slice(index + length)) : value.slice(0 + length);
       }
       string += value;
+      return this.drawResults(string);
+    };
+
+    Results.prototype.drawResults = function(string) {
       return $('ul#results').append("<li>" + string + "</li>");
     };
 
@@ -178,8 +186,8 @@
 
   })();
 
-  $(function() {
-    return new App;
-  });
+  window.App = App;
+
+  window.$ = $;
 
 }).call(this);

@@ -10,9 +10,12 @@ class Expression extends Spine.Controller
 
   onKeyPress: (event) ->
     try
-      @value = new RegExp(@regexp.val(), @option.val())
+      @value = @buildRegex @regexp.val(), @option.val()
     catch error
     @.trigger 'update'
+
+  buildRegex: (value, option) ->
+    new RegExp(value, option)
 
 class TestStrings extends Spine.Controller
   elements:
@@ -60,14 +63,23 @@ class Results
     string = ''
 
     for match in matches
-      index = value.indexOf(match)
-      length = match.length
+      break if value == ''
+      index   = value.indexOf(match)
+      length  = match.length
+
       string += value.slice(0, index)
-      string += "<span>#{value.slice(index, index + length)}</span>"
-      value = value.slice(index + length)
+
+      value = if index > -1
+        string += "<span>#{value.slice(index, index + length)}</span>"
+        value.slice(index + length)
+      else
+        value.slice(0 + length)
 
     string += value
 
+    @drawResults string
+
+  drawResults: (string) ->
     $('ul#results').append("<li>#{string}</li>")
 
   matchGroups: (value, matches, count) ->
@@ -103,5 +115,5 @@ class App
     @test_strings = new TestStrings(el: '#test_strings')
     @results      = new Results(@expression, @test_strings)
 
-$ ->
-  new App
+window.App = App
+window.$ = $
