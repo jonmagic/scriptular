@@ -107,16 +107,16 @@
     };
 
     Results.prototype.matchResults = function(value, matches) {
-      var index, length, match, string, _i, _len;
+      var i, index, length, match, string, _len;
       if (!matches) return;
       string = '';
-      for (_i = 0, _len = matches.length; _i < _len; _i++) {
-        match = matches[_i];
+      for (i = 0, _len = matches.length; i < _len; i++) {
+        match = matches[i];
         if (value === '') break;
         index = value.indexOf(match);
         length = match.length;
         string += value.slice(0, index);
-        value = index > -1 ? (string += "<span>" + (value.slice(index, index + length)) + "</span>", value.slice(index + length)) : value.slice(0 + length);
+        value = index > -1 ? (string += "<span>" + (value.slice(index, index + length)) + "</span>", value.slice(index + length)) : length > 1 ? value.slice(1 + length) : value.slice(0 + length);
       }
       string += value;
       return this.drawResults(string);
@@ -134,7 +134,7 @@
         _results = [];
         for (_i = 0, _len = matches.length; _i < _len; _i++) {
           match = matches[_i];
-          _results.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
+          _results.push(this.drawGroup(count, match));
         }
         return _results;
       } else {
@@ -142,10 +142,14 @@
         _results2 = [];
         for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
           match = _ref[_j];
-          _results2.push($("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>"));
+          _results2.push(this.drawGroup(count, match));
         }
         return _results2;
       }
+    };
+
+    Results.prototype.drawGroup = function(count, match) {
+      return $("ul#groups li#match_" + count + " ol").append("<li>" + match + "</li>");
     };
 
     Results.prototype.showIntro = function() {
