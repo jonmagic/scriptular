@@ -90,6 +90,8 @@
       } else if (this.expression.regexp.val() === '' || this.test_strings.input.val() === '') {
         this.showError();
         return true;
+      } else if (!this.test_strings.values) {
+        return true;
       }
       try {
         _ref = this.test_strings.values;
@@ -107,44 +109,47 @@
     };
 
     Results.prototype.matchResults = function(value, matches) {
-      var i, index, length, match, string, _len;
+      var index, length, match, string, _i, _len;
       if (!matches) return;
       string = '';
-      for (i = 0, _len = matches.length; i < _len; i++) {
-        match = matches[i];
+      for (_i = 0, _len = matches.length; _i < _len; _i++) {
+        match = matches[_i];
         if (value === '') break;
         index = value.indexOf(match);
         length = match.length;
-        string += value.slice(0, index);
-        value = index > -1 ? (string += "<span>" + (value.slice(index, index + length)) + "</span>", value.slice(index + length)) : length > 1 ? value.slice(1 + length) : value.slice(0 + length);
+        if (index > -1) {
+          string += value.slice(0, index);
+          if (index > -1) {
+            string += "<span>" + (value.slice(index, index + length)) + "</span>";
+          }
+          if (index !== -1) value = value.slice(length);
+        }
       }
       string += value;
-      return this.drawResults(string);
+      return this.drawResult(string);
     };
 
-    Results.prototype.drawResults = function(string) {
+    Results.prototype.drawResult = function(string) {
       return $('ul#results').append("<li>" + string + "</li>");
     };
 
     Results.prototype.matchGroups = function(value, matches, count) {
-      var match, _i, _j, _len, _len2, _ref, _results, _results2;
+      var match, _i, _j, _len, _len2, _ref;
       if (!matches) return;
       $('ul#groups').append("<li id='match_" + count + "'><h3>Match " + count + "</h3><ol></ol></li>");
       if (this.expression.option.val() === 'g') {
-        _results = [];
         for (_i = 0, _len = matches.length; _i < _len; _i++) {
           match = matches[_i];
-          _results.push(this.drawGroup(count, match));
+          if (match === '') return;
+          this.drawGroup(count, match);
         }
-        return _results;
       } else {
         _ref = matches.slice(1);
-        _results2 = [];
         for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
           match = _ref[_j];
-          _results2.push(this.drawGroup(count, match));
+          if (match === '') return;
+          this.drawGroup(count, match);
         }
-        return _results2;
       }
     };
 
@@ -177,14 +182,29 @@
   App = (function() {
 
     function App() {
-      this.expression = new Expression({
+      this.loadExample = __bind(this.loadExample, this);      this.expression = new Expression({
         el: '#expression'
       });
       this.test_strings = new TestStrings({
         el: '#test_strings'
       });
       this.results = new Results(this.expression, this.test_strings);
+      $('#example').bind('click', this.loadExample);
     }
+
+    App.prototype.loadExample = function(event) {
+      var option, regex, test_strings;
+      event.preventDefault();
+      regex = "^(https?)://((?:[A-Z0-9]*\\\.?)*)((?:\\\/?[A-Z0-9])*)";
+      option = 'i';
+      test_strings = ['https://github.com/jonmagic/scriptular', 'http://scriptular.com', 'http://www.google.com', 'http://www.guardian.co.uk'];
+      $('input[name=expression]').val(regex);
+      $('input[name=option]').val(option);
+      $('textarea').val(test_strings.join('\n'));
+      this.expression.onKeyPress();
+      this.test_strings.onKeyPress();
+      return this.results.compile;
+    };
 
     return App;
 
