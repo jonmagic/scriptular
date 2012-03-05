@@ -66,12 +66,21 @@
           }
         ],
         'output': '<span>https://github.com/jonmagic/scriptular</span>'
+      }, {
+        'regex': 'mono',
+        'option': 'g',
+        'test_strings': [
+          {
+            'string': 'monolimamonolima'
+          }
+        ],
+        'output': '<span>mono</span>lima<span>mono</span>lima'
       }
     ];
     _fn = function(subject) {
       return it("subject " + i + " returns correct output", function() {
         var item;
-        this.app.expression.value = this.app.expression.buildRegex(subject['regex']);
+        this.app.expression.value = this.app.expression.buildRegex(subject['regex'], subject['option']);
         this.app.test_strings.values = (function() {
           var _i, _len2, _ref, _results;
           _ref = subject['test_strings'];
@@ -104,7 +113,7 @@
             return it("subject " + i + " returns correct groups", function() {
               var match, _j, _len4, _ref2, _results3;
               if (!test['matches']) return true;
-              this.app.expression.value = this.app.expression.buildRegex(subject['regex']);
+              this.app.expression.value = this.app.expression.buildRegex(subject['regex'], subject['option']);
               this.app.test_strings.values = test['string'];
               spyOn(this.app.results, 'drawGroup');
               this.app.results.compile();

@@ -115,6 +115,7 @@
       for (_i = 0, _len = matches.length; _i < _len; _i++) {
         match = matches[_i];
         if (value === '') break;
+        console.log("This is the match: " + match);
         index = value.indexOf(match);
         length = match.length;
         if (index > -1) {
@@ -122,8 +123,11 @@
           if (index > -1) {
             string += "<span>" + (value.slice(index, index + length)) + "</span>";
           }
-          if (index !== -1) value = value.slice(length);
+          console.log("value before: " + value + " length: " + length + " index: " + index + " string: " + string);
+          value = value.slice(length + index);
         }
+        console.log("value after: " + value + " string: " + string);
+        console.log('');
       }
       string += value;
       return this.drawResult(string);

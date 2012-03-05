@@ -23,13 +23,14 @@ describe 'Results', ->
       ]
       'output': '<span>https://github.com/jonmagic/scriptular</span>'
     }
+    {'regex': 'mono', 'option': 'g', 'test_strings': [{'string': 'monolimamonolima'}], 'output': '<span>mono</span>lima<span>mono</span>lima'}
   ]
 
   # look thru subjects
   for subject, i in subjects
     do (subject) ->
       it "subject #{i} returns correct output", ->
-        @app.expression.value = @app.expression.buildRegex(subject['regex'])
+        @app.expression.value = @app.expression.buildRegex(subject['regex'], subject['option'])
         @app.test_strings.values = (item['string'] for item in subject['test_strings'])
 
         spyOn @app.results, 'drawResult'
@@ -42,7 +43,7 @@ describe 'Results', ->
         it "subject #{i} returns correct groups", ->
           return true unless test['matches']
 
-          @app.expression.value = @app.expression.buildRegex(subject['regex'])
+          @app.expression.value = @app.expression.buildRegex(subject['regex'], subject['option'])
           @app.test_strings.values = test['string']
 
           spyOn @app.results, 'drawGroup'

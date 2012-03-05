@@ -67,7 +67,7 @@ class Results
     for match in matches
       break if value == ''
 
-      # console.log("This is the match: #{match}")
+      console.log("This is the match: #{match}")
 
       index = value.indexOf(match)
       length = match.length
@@ -75,11 +75,11 @@ class Results
         string += value.slice(0, index)
         string += "<span>#{value.slice(index, index + length)}</span>" if index > -1
 
-        # console.log("value before: #{value} length: #{length} index: #{index} string: #{string}")
-        value = value.slice(length) unless index == -1
+        console.log("value before: #{value} length: #{length} index: #{index} string: #{string}")
+        value = value.slice(length + index)
 
-      # console.log("value after: #{value} string: #{string}")
-      # console.log('')
+      console.log("value after: #{value} string: #{string}")
+      console.log('')
 
     string += value
 
