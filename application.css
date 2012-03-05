@@ -263,7 +263,7 @@ input, textarea, #results, #groups {
 #footer {
   clear: both;
   padding-top: 20px;
-  text-align: center;
+  text-align: left;
   font-size: 0.9em;
   -webkit-font-smoothing: antialiased;
 }
