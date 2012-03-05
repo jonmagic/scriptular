@@ -67,7 +67,7 @@ body {
 }
 
 #container {
-  width: 650px;
+  width: 960px;
   margin: 0 auto;
 }
 
@@ -114,6 +114,8 @@ a:hover {
 }
 
 #main {
+  float:left;
+  width:590px;
   background-color: #FFFFFF;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -134,6 +136,55 @@ a:hover {
 
 #main a {
   color: #F7296F;
+}
+
+#quick_reference {
+  background-color: rgba(50,50,50,0.5);
+  color: #FFF;
+  height:350px;
+  margin: 20px 0 0 650px;
+  padding:20px 10px 0 20px;
+  width: 280px;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#quick_reference .scrollable {
+  overflow:auto;
+  height:330px;
+}
+
+#quick_reference h2 {
+  color: #999;
+}
+
+#quick_reference table {
+  color: #FFF;
+  font-size: 60%;
+  margin-bottom: 20px;
+}
+
+#quick_reference td {
+  padding-right: 15px;
+  line-height:1.5em;
+}
+
+#quick_reference .regex {
+  color: #F7296F;
+  font-size: 14px;
+  padding-right: 5px;
+  text-align: center;
+  width:60px;
+}
+
+#quick_reference a {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 input, textarea, #results, #groups {
@@ -210,7 +261,8 @@ input, textarea, #results, #groups {
 }
 
 #footer {
-  margin-top: 20px;
+  clear: both;
+  padding-top: 20px;
   text-align: center;
   font-size: 0.9em;
   -webkit-font-smoothing: antialiased;
