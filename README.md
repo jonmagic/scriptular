@@ -20,7 +20,7 @@ So I created [Scriptular](http://scriptular.com) and started regular expressing 
 
 Just open SpecRunner.html in a browser to run the test suite.
 
-## CONTRIBUTE
+## Contribute
 
 If you'd like to hack on Scriptular, start by forking the repo on GitHub:
 
@@ -35,6 +35,13 @@ The best way to get your changes merged back into core is as follows:
 1. If necessary, rebase your commits into logical chunks, without errors
 1. Push the branch up to GitHub
 1. Send a pull request for your branch
+
+## Contributors
+
+* [Jonathan Hoyt](https://github.com/jonmagic)
+* [Brandon Keepers](https://github.com/bkeepers)
+* [Aaron Kalin](https://github.com/martinisoft)
+* [Ben Truyman](https://github.com/bentruyman)
 
 ## License
 
