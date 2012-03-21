@@ -244,7 +244,7 @@ input, textarea, #results, #groups {
 }
 
 #groups {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 #groups h3 {

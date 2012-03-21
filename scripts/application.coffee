@@ -17,6 +17,9 @@ class Expression extends Spine.Controller
   buildRegex: (value, option) ->
     new RegExp(value, option)
 
+  asUrlPart:() ->
+    encodeURIComponent(@regexp.val() + "||||" + @option.val())
+
 class TestStrings extends Spine.Controller
   elements:
     'textarea': 'input'
@@ -30,6 +33,9 @@ class TestStrings extends Spine.Controller
 
   getValues: (val) ->
     @values = val.split('\n')
+
+  asUrlPart:() ->
+    encodeURIComponent(JSON.stringify(@values))
 
 class Results
   constructor: (@expression, @test_strings) ->
@@ -56,9 +62,15 @@ class Results
         @matchResults(value, matches)
         @matchGroups(value, matches, count)
         count += 1
+      @addShareLink(@expression.asUrlPart(), @test_strings.asUrlPart())
       @showOutput()
     catch error
       @showError()
+
+  addShareLink: (expression_url, test_strings_url) ->
+    url = window.location.protocol+window.location.pathname+"#"
+    url += expression_url + "||||" + test_strings_url
+    $("#share_link").attr("href",url)
 
   matchResults: (value, matches) ->
     return unless matches
@@ -126,6 +138,15 @@ class App
     @test_strings = new TestStrings(el: '#test_strings')
     @results      = new Results(@expression, @test_strings)
     $('#example').bind 'click', @loadExample
+    if window.location.hash != '' 
+      @loadFromHash()
+
+  loadFromHash: () =>
+    [expression_encoded, test_strings_from_url] = window.location.hash.substr(1).split("||||").map(decodeURIComponent)
+    [regex, option] = expression_encoded.split("||||")
+    test_strings_from_url =  JSON.parse(test_strings_from_url)
+
+    @load(regex,option,test_strings_from_url)
 
   loadExample: (event) =>
     event.preventDefault()
@@ -139,12 +160,16 @@ class App
       'http://www.guardian.co.uk'
     ]
 
+    @load(regex,option,test_strings)
+
+  load: (regex,option,test_strings) =>
     $('input[name=expression]').val(regex)
     $('input[name=option]').val(option)
     $('textarea').val(test_strings.join('\n'))
     @expression.onKeyPress()
     @test_strings.onKeyPress()
     @results.compile
+
 
 window.App = App
 window.$ = $
