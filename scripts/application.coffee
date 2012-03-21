@@ -69,7 +69,7 @@ class Results
 
   addShareLink: (expression_url, test_strings_url) ->
     url = window.location.protocol+window.location.pathname+"#"
-    url += expression_url + "||||" + test_strings_url
+    url += expression_url + encodeURIComponent("||||") + test_strings_url
     $("#share_link").attr("href",url)
 
   matchResults: (value, matches) ->
@@ -142,8 +142,7 @@ class App
       @loadFromHash()
 
   loadFromHash: () =>
-    [expression_encoded, test_strings_from_url] = window.location.hash.substr(1).split("||||").map(decodeURIComponent)
-    [regex, option] = expression_encoded.split("||||")
+    [regex, option, test_strings_from_url] = decodeURIComponent(window.location.hash.substr(1)).split("||||")
     test_strings_from_url =  JSON.parse(test_strings_from_url)
 
     @load(regex,option,test_strings_from_url)
