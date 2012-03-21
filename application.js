@@ -36,6 +36,10 @@
       return new RegExp(value, option);
     };
 
+    Expression.prototype.asUrlPart = function() {
+      return encodeURIComponent(this.regexp.val() + "||||" + this.option.val());
+    };
+
     return Expression;
 
   })(Spine.Controller);
@@ -63,6 +67,10 @@
 
     TestStrings.prototype.getValues = function(val) {
       return this.values = val.split('\n');
+    };
+
+    TestStrings.prototype.asUrlPart = function() {
+      return encodeURIComponent(JSON.stringify(this.values));
     };
 
     return TestStrings;
@@ -102,10 +110,18 @@
           this.matchGroups(value, matches, count);
           count += 1;
         }
+        this.addShareLink(this.expression.asUrlPart(), this.test_strings.asUrlPart());
         return this.showOutput();
       } catch (error) {
         return this.showError();
       }
+    };
+
+    Results.prototype.addShareLink = function(expression_url, test_strings_url) {
+      var url;
+      url = window.location.protocol + window.location.pathname + "#";
+      url += expression_url + encodeURIComponent("||||") + test_strings_url;
+      return $("#share_link").attr("href", url);
     };
 
     Results.prototype.matchResults = function(value, matches) {
@@ -115,7 +131,6 @@
       for (_i = 0, _len = matches.length; _i < _len; _i++) {
         match = matches[_i];
         if (value === '') break;
-        console.log("This is the match: " + match);
         index = value.indexOf(match);
         length = match.length;
         if (index > -1) {
@@ -123,11 +138,8 @@
           if (index > -1) {
             string += "<span>" + (value.slice(index, index + length)) + "</span>";
           }
-          console.log("value before: " + value + " length: " + length + " index: " + index + " string: " + string);
           value = value.slice(length + index);
         }
-        console.log("value after: " + value + " string: " + string);
-        console.log('');
       }
       string += value;
       return this.drawResult(string);
@@ -186,7 +198,9 @@
   App = (function() {
 
     function App() {
-      this.loadExample = __bind(this.loadExample, this);      this.expression = new Expression({
+      this.load = __bind(this.load, this);
+      this.loadExample = __bind(this.loadExample, this);
+      this.loadFromHash = __bind(this.loadFromHash, this);      this.expression = new Expression({
         el: '#expression'
       });
       this.test_strings = new TestStrings({
@@ -194,7 +208,15 @@
       });
       this.results = new Results(this.expression, this.test_strings);
       $('#example').bind('click', this.loadExample);
+      if (window.location.hash !== '') this.loadFromHash();
     }
+
+    App.prototype.loadFromHash = function() {
+      var option, regex, test_strings_from_url, _ref;
+      _ref = decodeURIComponent(window.location.hash.substr(1)).split("||||"), regex = _ref[0], option = _ref[1], test_strings_from_url = _ref[2];
+      test_strings_from_url = JSON.parse(test_strings_from_url);
+      return this.load(regex, option, test_strings_from_url);
+    };
 
     App.prototype.loadExample = function(event) {
       var option, regex, test_strings;
@@ -202,6 +224,10 @@
       regex = "^(https?)://((?:[A-Z0-9]*\\\.?)*)((?:\\\/?[A-Z0-9])*)";
       option = 'i';
       test_strings = ['https://github.com/jonmagic/scriptular', 'http://scriptular.com', 'http://www.google.com', 'http://www.guardian.co.uk'];
+      return this.load(regex, option, test_strings);
+    };
+
+    App.prototype.load = function(regex, option, test_strings) {
       $('input[name=expression]').val(regex);
       $('input[name=option]').val(option);
       $('textarea').val(test_strings.join('\n'));
