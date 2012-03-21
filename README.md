@@ -42,6 +42,7 @@ The best way to get your changes merged back into core is as follows:
 * [Brandon Keepers](https://github.com/bkeepers)
 * [Aaron Kalin](https://github.com/martinisoft)
 * [Ben Truyman](https://github.com/bentruyman)
+* [John K. Paul](https://github.com/johnkpaul)
 
 ## License
 
