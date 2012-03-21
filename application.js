@@ -120,7 +120,7 @@
     Results.prototype.addShareLink = function(expression_url, test_strings_url) {
       var url;
       url = window.location.protocol + window.location.pathname + "#";
-      url += expression_url + "||||" + test_strings_url;
+      url += expression_url + encodeURIComponent("||||") + test_strings_url;
       return $("#share_link").attr("href", url);
     };
 
@@ -212,9 +212,8 @@
     }
 
     App.prototype.loadFromHash = function() {
-      var expression_encoded, option, regex, test_strings_from_url, _ref, _ref2;
-      _ref = window.location.hash.substr(1).split("||||").map(decodeURIComponent), expression_encoded = _ref[0], test_strings_from_url = _ref[1];
-      _ref2 = expression_encoded.split("||||"), regex = _ref2[0], option = _ref2[1];
+      var option, regex, test_strings_from_url, _ref;
+      _ref = decodeURIComponent(window.location.hash.substr(1)).split("||||"), regex = _ref[0], option = _ref[1], test_strings_from_url = _ref[2];
       test_strings_from_url = JSON.parse(test_strings_from_url);
       return this.load(regex, option, test_strings_from_url);
     };
