@@ -68,9 +68,10 @@ class Results
       @showError()
 
   addShareLink: (expression_url, test_strings_url) ->
-    url = window.location.protocol+window.location.pathname+"#"
+    url = window.location.origin+"/#"
     url += expression_url + encodeURIComponent("||||") + test_strings_url
-    $("#share_link").attr("href",url)
+    window.
+    $("#share_link").attr("href", url)
 
   matchResults: (value, matches) ->
     return unless matches
@@ -138,8 +139,7 @@ class App
     @test_strings = new TestStrings(el: '#test_strings')
     @results      = new Results(@expression, @test_strings)
     $('#example').bind 'click', @loadExample
-    if window.location.hash != '' 
-      @loadFromHash()
+    @loadFromHash() if window.location.hash != ''
 
   loadFromHash: () =>
     [regex, option, test_strings_from_url] = decodeURIComponent(window.location.hash.substr(1)).split("||||")
