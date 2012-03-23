@@ -260,6 +260,16 @@ input, textarea, #results, #groups {
   padding-left: 30px;
 }
 
+#shares li {
+
+}
+
+#shares a {
+  color: #444;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
 #footer {
   clear: both;
   padding-top: 20px;
