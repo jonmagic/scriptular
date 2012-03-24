@@ -68,9 +68,8 @@ class Results
       @showError()
 
   addShareLink: (expression_url, test_strings_url) ->
-    url = window.location.origin+"/#"
-    url += expression_url + encodeURIComponent("||||") + test_strings_url
-    window.
+    url =  window.location.protocol + "//" + window.location.host
+    url += "/#" + expression_url + encodeURIComponent("||||") + test_strings_url
     $("#share_link").attr("href", url)
 
   matchResults: (value, matches) ->

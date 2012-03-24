@@ -119,9 +119,9 @@
 
     Results.prototype.addShareLink = function(expression_url, test_strings_url) {
       var url;
-      url = window.location.origin + "/#";
-      url += expression_url + encodeURIComponent("||||") + test_strings_url;
-      return window.$("#share_link").attr("href", url);
+      url = window.location.protocol + "//" + window.location.host;
+      url += "/#" + expression_url + encodeURIComponent("||||") + test_strings_url;
+      return $("#share_link").attr("href", url);
     };
 
     Results.prototype.matchResults = function(value, matches) {
