@@ -8,6 +8,8 @@ describe 'Results', ->
 
   subjects = [
     {'regex': 'a', 'test_strings': [{'string': 'a'}], 'output': '<span>a</span>'}
+    {'regex': 'a$', 'test_strings': [{'string': 'asdfja'}], 'output': 'asdfj<span>a</span>'}
+    {'regex': '"$', 'test_strings': [{'string': '"hello"'}], 'output': '"hello<span>"</span>'}
     {'regex': 'a(.*)c', 'test_strings': [{'string': 'abcdd', 'matches': ['b']}], 'output': '<span>abc</span>dd'}
     {'regex': 'f(oo)', 'test_strings': [{'string': 'foodbar', 'matches': ['oo']}], 'output': '<span>foo</span>dbar'}
     {
