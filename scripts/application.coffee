@@ -76,12 +76,13 @@ class Results
     return unless matches
     string = ''
 
+    matches = @generateMatches(value,@expression.value);
     for match in matches
       break if value == ''
 
       # console.log("This is the match: #{match}")
 
-      index = value.indexOf(match)
+      index =  match.index
       length = match.length
       if index > -1
         string += value.slice(0, index)
@@ -96,6 +97,15 @@ class Results
     string += value
 
     @drawResult string
+
+  generateMatches: (value, regex) ->
+    result = []
+    while execution = regex.exec(value) 
+        index = execution.index
+        length = execution[0].length
+        result.push({index:index,length:length})
+        value = value.substr(length+index)
+    result
 
   drawResult: (string) ->
     $('ul#results').append("<li>#{string}</li>")
