@@ -138,6 +138,9 @@
           index: index,
           length: length
         });
+        if (length + index === 0) {
+          break;
+        }
         value = value.substr(length + index);
       }
       return result;
