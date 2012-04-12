@@ -18,6 +18,14 @@
         ],
         'output': '<span>a</span>'
       }, {
+        'regex': '(issues)?',
+        'test_strings': [
+          {
+            'string': 'issues'
+          }
+        ],
+        'output': '<span>issues</span>'
+      }, {
         'regex': 'a$',
         'test_strings': [
           {
