@@ -106,6 +106,7 @@ class Results
         result.push({index:index,length:length})
         break if length+index == 0
         value = value.substr(length+index)
+        regex.lastIndex = 0
     result
 
   drawResult: (string) ->

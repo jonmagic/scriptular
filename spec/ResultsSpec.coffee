@@ -14,6 +14,12 @@ describe 'Results', ->
     {'regex': 'a(.*)c', 'test_strings': [{'string': 'abcdd', 'matches': ['b']}], 'output': '<span>abc</span>dd'}
     {'regex': 'f(oo)', 'test_strings': [{'string': 'foodbar', 'matches': ['oo']}], 'output': '<span>foo</span>dbar'}
     {
+      'regex': 'color-stop\\((.+?)\\)'
+      'option':'g'
+      'test_strings': [{'string': '-webkit-gradient(linear, right top, left top, color-stop(0, #FF7417), color-stop(1, #82A8FF))'}]
+      'output': '-webkit-gradient(linear, right top, left top, <span>color-stop(0, #FF7417)</span>, <span>color-stop(1, #82A8FF)</span>)'
+    }
+    {
       'regex': '^(https?)'
       'test_strings': [{'string': 'https://github.com', 'matches': ['https']}]
       'output': '<span>https</span>://github.com'
