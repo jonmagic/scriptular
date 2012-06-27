@@ -1,5 +1,5 @@
 Scriptular
-----------
+==========
 
 A regular expression editor for javascript.
 
