@@ -215,6 +215,11 @@ input, textarea, #results, #groups {
   width: 50px;
 }
 
+#expression input[name=expression],
+#expression input[name=option] {
+  font-family: menlo, courier, sans-serif;
+}
+
 #test_strings textarea {
   height: 95px;
   width: 100%;
