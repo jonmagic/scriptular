@@ -76,9 +76,10 @@ class Results
     escape function from Peter Hoffman found at
     http://peter-hoffmann.com/2012/coffeescript-string-interpolation-with-html-escaping.html
   ###
-  escape: (s) -> (''+s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-        .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')    
+  escape: (s) -> 
+    (''+s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')    
 
   matchResults: (value, matches) ->
     return unless matches
