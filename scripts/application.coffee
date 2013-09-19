@@ -72,6 +72,10 @@ class Results
     url += "/#" + expression_url + encodeURIComponent("||||") + test_strings_url
     $("#share_link").attr("href", url)
 
+  escape: (s) -> (''+s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')    
+
   matchResults: (value, matches) ->
     return unless matches
     string = ''
@@ -110,6 +114,7 @@ class Results
     result
 
   drawResult: (string) ->
+    string = @escape string
     $('ul#results').append("<li>#{string}</li>")
 
   matchGroups: (value, matches, count) ->
@@ -127,6 +132,7 @@ class Results
         @drawGroup(count, match)
 
   drawGroup: (count, match) ->
+    match = @escape match
     $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
 
   showIntro: ->
