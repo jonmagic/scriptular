@@ -126,6 +126,12 @@
       return $("#share_link").attr("href", url);
     };
 
+    /* 
+      escape function from Peter Hoffman found at
+      http://peter-hoffmann.com/2012/coffeescript-string-interpolation-with-html-escaping.html
+    */
+
+
     Results.prototype.escape = function(s) {
       return ('' + s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/\//g, '&#x2F;');
     };
@@ -147,7 +153,7 @@
         if (index > -1) {
           string += value.slice(0, index);
           if (index > -1) {
-            string += "<span>" + (value.slice(index, index + length)) + "</span>";
+            string += "" + (value.slice(index, index + length));
           }
           value = value.slice(length + index);
         }
