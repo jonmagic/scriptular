@@ -95,7 +95,7 @@ class Results
       length = match.length
       if index > -1
         string += value.slice(0, index)
-        string += "#{value.slice(index, index + length)}" if index > -1
+        string += "<span>#{@escape value.slice(index, index + length)}</span>" if index > -1
 
         # console.log("value before: #{value} length: #{length} index: #{index} string: #{string}")
         value = value.slice(length + index)
@@ -119,7 +119,6 @@ class Results
     result
 
   drawResult: (string) ->
-    string = @escape string
     $('ul#results').append("<li>#{string}</li>")
 
   matchGroups: (value, matches, count) ->

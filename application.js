@@ -153,7 +153,7 @@
         if (index > -1) {
           string += value.slice(0, index);
           if (index > -1) {
-            string += "" + (value.slice(index, index + length));
+            string += "<span>" + (this.escape(value.slice(index, index + length))) + "</span>";
           }
           value = value.slice(length + index);
         }
@@ -182,7 +182,6 @@
     };
 
     Results.prototype.drawResult = function(string) {
-      string = this.escape(string);
       return $('ul#results').append("<li>" + string + "</li>");
     };
 
