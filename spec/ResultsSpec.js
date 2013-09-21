@@ -105,14 +105,23 @@
         ],
         'output': '<span>mono</span>lima<span>mono</span>lima'
       }, {
-        'regex': '(<.*>)',
+        'regex': '(<.{1,2}>)',
         'option': '',
         'test_strings': [
           {
-            'string': '<li>'
+            'string': '<li>foo</li>'
           }
         ],
-        'output': '<span>&lt;li&gt;</span>'
+        'output': '<span>&lt;li&gt;</span>foo&lt;/li&gt;'
+      }, {
+        'regex': '(<\/?li>)',
+        'option': 'g',
+        'test_strings': [
+          {
+            'string': '<li>foo</li>'
+          }
+        ],
+        'output': '<span>&lt;li&gt;</span>foo<span>&lt;/li&gt;</span>'
       }
     ];
     _fn = function(subject) {

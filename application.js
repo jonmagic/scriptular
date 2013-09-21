@@ -137,48 +137,16 @@
     };
 
     Results.prototype.matchResults = function(value, matches) {
-      var index, length, match, string, _i, _len;
+      var string;
       if (!matches) {
         return;
       }
-      string = '';
-      matches = this.generateMatches(value, this.expression.value);
-      for (_i = 0, _len = matches.length; _i < _len; _i++) {
-        match = matches[_i];
-        if (value === '') {
-          break;
-        }
-        index = match.index;
-        length = match.length;
-        if (index > -1) {
-          string += value.slice(0, index);
-          if (index > -1) {
-            string += "<span>" + (this.escape(value.slice(index, index + length))) + "</span>";
-          }
-          value = value.slice(length + index);
-        }
-      }
-      string += value;
+      string = this.generateMatches(value, this.expression.value);
       return this.drawResult(string);
     };
 
     Results.prototype.generateMatches = function(value, regex) {
-      var execution, index, length, result;
-      result = [];
-      while (execution = regex.exec(value)) {
-        index = execution.index;
-        length = execution[0].length;
-        result.push({
-          index: index,
-          length: length
-        });
-        if (length + index === 0) {
-          break;
-        }
-        value = value.substr(length + index);
-        regex.lastIndex = 0;
-      }
-      return result;
+      return this.escape(value.replace(regex, "~~bs~~$&~~es~~")).replace(/~~bs~~/g, '<span>').replace(/~~es~~/g, '</span>');
     };
 
     Results.prototype.drawResult = function(string) {
