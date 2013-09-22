@@ -37,7 +37,7 @@ describe 'Results', ->
     }
     {'regex': 'mono', 'option': 'g', 'test_strings': [{'string': 'monolimamonolima'}], 'output': '<span>mono</span>lima<span>mono</span>lima'}
     {'regex': '(<.{1,2}>)', 'option': '', 'test_strings': [{'string': '<li>foo</li>'}], 'output': '<span>&lt;li&gt;</span>foo&lt;/li&gt;'}
-    {'regex': '(<\/?li>)', 'option': 'g', 'test_strings': [{'string': '<li>foo</li>'}], 'output': '<span>&lt;li&gt;</span>foo<span>&lt;/li&gt;</span>'}
+    {'regex': '(<\/?(LI)>)', 'option': 'gi', 'test_strings': [{'string': '<li>foo</li>'}], 'output': '<span>&lt;li&gt;</span>foo<span>&lt;/li&gt;</span>'}
   ]
 
   for subject, i in subjects

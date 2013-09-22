@@ -98,7 +98,7 @@ class Results
 
     $('ul#groups').append("<li id='match_#{count}'><h3>Match #{count}</h3><ol></ol></li>")
 
-    if @expression.option.val() == 'g'
+    if @expression.value.global
       for match in matches
         return if match == ''
         @drawGroup(count, match)

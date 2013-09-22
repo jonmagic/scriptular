@@ -114,8 +114,8 @@
         ],
         'output': '<span>&lt;li&gt;</span>foo&lt;/li&gt;'
       }, {
-        'regex': '(<\/?li>)',
-        'option': 'g',
+        'regex': '(<\/?(LI)>)',
+        'option': 'gi',
         'test_strings': [
           {
             'string': '<li>foo</li>'

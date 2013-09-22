@@ -159,7 +159,7 @@
         return;
       }
       $('ul#groups').append("<li id='match_" + count + "'><h3>Match " + count + "</h3><ol></ol></li>");
-      if (this.expression.option.val() === 'g') {
+      if (this.expression.value.global) {
         for (_i = 0, _len = matches.length; _i < _len; _i++) {
           match = matches[_i];
           if (match === '') {
