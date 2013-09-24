@@ -72,6 +72,15 @@ class Results
     url += "/#" + expression_url + encodeURIComponent("||||") + test_strings_url
     $("#share_link").attr("href", url)
 
+  ### 
+    escape function from Peter Hoffman found at
+    http://peter-hoffmann.com/2012/coffeescript-string-interpolation-with-html-escaping.html
+  ###
+  escape: (s) -> 
+    (''+s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')    
+
   matchResults: (value, matches) ->
     return unless matches
     string = ''
@@ -86,7 +95,7 @@ class Results
       length = match.length
       if index > -1
         string += value.slice(0, index)
-        string += "<span>#{value.slice(index, index + length)}</span>" if index > -1
+        string += "<span>#{@escape value.slice(index, index + length)}</span>" if index > -1
 
         # console.log("value before: #{value} length: #{length} index: #{index} string: #{string}")
         value = value.slice(length + index)
@@ -127,6 +136,7 @@ class Results
         @drawGroup(count, match)
 
   drawGroup: (count, match) ->
+    match = @escape match
     $("ul#groups li#match_#{count} ol").append("<li>#{match}</li>")
 
   showIntro: ->
