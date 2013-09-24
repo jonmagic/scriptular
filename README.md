@@ -45,6 +45,8 @@ The best way to get your changes merged back into core is as follows:
 * [Ben Truyman](https://github.com/bentruyman)
 * [John K. Paul](https://github.com/johnkpaul)
 * [Adam Brodzinski](https://github.com/AdamBrodzinski)
+* [brycecr](https://github.com/brycecr)
+* [Judith Hengeveld](https://github.com/judith)
 
 ## License
 
