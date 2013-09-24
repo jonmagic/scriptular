@@ -79,44 +79,18 @@ class Results
   escape: (s) -> 
     (''+s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-      .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')    
+      .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')
 
   matchResults: (value, matches) ->
     return unless matches
-    string = ''
 
-    matches = @generateMatches(value,@expression.value);
-    for match in matches
-      break if value == ''
-
-      # console.log("This is the match: #{match}")
-
-      index =  match.index
-      length = match.length
-      if index > -1
-        string += value.slice(0, index)
-        string += "<span>#{@escape value.slice(index, index + length)}</span>" if index > -1
-
-        # console.log("value before: #{value} length: #{length} index: #{index} string: #{string}")
-        value = value.slice(length + index)
-
-      # console.log("value after: #{value} string: #{string}")
-      # console.log('')
-
-    string += value
-
+    string = @generateMatches(value,@expression.value);
     @drawResult string
 
   generateMatches: (value, regex) ->
-    result = []
-    while execution = regex.exec(value) 
-        index = execution.index
-        length = execution[0].length
-        result.push({index:index,length:length})
-        break if length+index == 0
-        value = value.substr(length+index)
-        regex.lastIndex = 0
-    result
+    @escape(value.replace(regex, "~~scriptular_begin_match~~$&~~scriptular_end_match~~"))
+      .replace(/~~scriptular_begin_match~~/g, '<span>')
+      .replace(/~~scriptular_end_match~~/g, '</span>')
 
   drawResult: (string) ->
     $('ul#results').append("<li>#{string}</li>")
@@ -126,7 +100,7 @@ class Results
 
     $('ul#groups').append("<li id='match_#{count}'><h3>Match #{count}</h3><ol></ol></li>")
 
-    if @expression.option.val() == 'g'
+    if @expression.value.global
       for match in matches
         return if match == ''
         @drawGroup(count, match)

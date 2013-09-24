@@ -36,7 +36,8 @@ describe 'Results', ->
       'output': '<span>https://github.com/jonmagic/scriptular</span>'
     }
     {'regex': 'mono', 'option': 'g', 'test_strings': [{'string': 'monolimamonolima'}], 'output': '<span>mono</span>lima<span>mono</span>lima'}
-    {'regex': '(<.*>)', 'option': '', 'test_strings': [{'string': '<li>'}], 'output': '<span>&lt;li&gt;</span>'}
+    {'regex': '(<.{1,2}>)', 'option': '', 'test_strings': [{'string': '<li>foo</li>'}], 'output': '<span>&lt;li&gt;</span>foo&lt;/li&gt;'}
+    {'regex': '(<\/?(LI)>)', 'option': 'gi', 'test_strings': [{'string': '<li>foo</li>'}], 'output': '<span>&lt;li&gt;</span>foo<span>&lt;/li&gt;</span>'}
   ]
 
   for subject, i in subjects
