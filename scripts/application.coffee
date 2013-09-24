@@ -88,7 +88,9 @@ class Results
     @drawResult string
 
   generateMatches: (value, regex) ->
-    @escape(value.replace(regex, "~~bs~~$&~~es~~")).replace(/~~bs~~/g, '<span>').replace(/~~es~~/g, '</span>')
+    @escape(value.replace(regex, "~~scriptular_begin_match~~$&~~scriptular_end_match~~"))
+      .replace(/~~scriptular_begin_match~~/g, '<span>')
+      .replace(/~~scriptular_end_match~~/g, '</span>')
 
   drawResult: (string) ->
     $('ul#results').append("<li>#{string}</li>")
