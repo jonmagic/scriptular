@@ -245,7 +245,8 @@ input, textarea, #results, #groups {
 }
 
 #results span {
-  background-color: #f4ff80;
+  background-color: #9CE39E;
+  margin: 3px;
 }
 
 #groups {
