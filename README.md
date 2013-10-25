@@ -47,6 +47,7 @@ The best way to get your changes merged back into core is as follows:
 * [Adam Brodzinski](https://github.com/AdamBrodzinski)
 * [brycecr](https://github.com/brycecr)
 * [Judith Hengeveld](https://github.com/judith)
+* [beechnut](https://github.com/beechnut)
 
 ## License
 
