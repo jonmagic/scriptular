@@ -86,6 +86,10 @@ body {
   float: left;
 }
 
+#header h1 a:hover {
+  text-decoration: none;
+}
+
 #header h2 {
   color: #aaa;
   text-align: right;
