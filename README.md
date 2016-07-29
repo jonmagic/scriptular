@@ -50,6 +50,7 @@ The best way to get your changes merged back into core is as follows:
 * [beechnut](https://github.com/beechnut)
 * [Blair Anderson](https://github.com/blairanderson)
 * [Vladimir Pestov](https://github.com/KozzyKoder)
+* [Corey Leveen](https://github.com/coreyleveen)
 
 ## License
 
