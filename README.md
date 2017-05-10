@@ -51,6 +51,7 @@ The best way to get your changes merged back into core is as follows:
 * [Blair Anderson](https://github.com/blairanderson)
 * [Vladimir Pestov](https://github.com/KozzyKoder)
 * [Corey Leveen](https://github.com/coreyleveen)
+* [Daniel Arthur Gallagher](https://github.com/DanArthurGallagher)
 
 ## License
 
