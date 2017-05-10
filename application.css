@@ -211,7 +211,7 @@ input, textarea, #results, #groups {
 
 #expression input[name=expression] {
   margin: 0 4px;
-  width: 510px;
+  width: 464px;
 }
 
 #expression input[name=option] {
@@ -226,7 +226,7 @@ input, textarea, #results, #groups {
 
 #test_strings textarea {
   height: 95px;
-  width: 100%;
+  width: 565px;
 }
 
 #output, #error {
