@@ -229,15 +229,20 @@ input, textarea, #results, #groups {
   width: 565px;
 }
 
-#output, #error {
+#output, #error, #regex-error {
   display: none;
 }
 
-#intro, #error, #output {
+#intro, #error, #output, #regex-error {
   margin: 10px -30px -30px -30px;
   padding: 30px;
   background-color: #eef;
   border-top: 1px solid #dde;
+}
+
+#regex-error {
+  color: #f7296f;
+  font-size: 14px;
 }
 
 #results li {
