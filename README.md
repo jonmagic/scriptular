@@ -52,6 +52,7 @@ The best way to get your changes merged back into core is as follows:
 * [Vladimir Pestov](https://github.com/KozzyKoder)
 * [Corey Leveen](https://github.com/coreyleveen)
 * [Daniel Arthur Gallagher](https://github.com/DanArthurGallagher)
+* [Mosh Feu](https://github.com/moshfeu)
 
 ## License
 
