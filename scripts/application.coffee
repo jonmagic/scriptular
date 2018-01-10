@@ -47,6 +47,12 @@ class Results
     $('ul#groups').empty()
     count = 1
 
+    if @expression.regexp.val() != ''
+      try
+        new RegExp(@expression.regexp.val())
+      catch
+        @showRegexError()
+        return true
     if @expression.regexp.val() == '' && @test_strings.input.val() == ''
       @showIntro()
       return true
@@ -72,11 +78,11 @@ class Results
     url += "/#" + expression_url + encodeURIComponent("||||") + test_strings_url
     $("#share_link").attr("href", url)
 
-  ### 
+  ###
     escape function from Peter Hoffman found at
     http://peter-hoffmann.com/2012/coffeescript-string-interpolation-with-html-escaping.html
   ###
-  escape: (s) -> 
+  escape: (s) ->
     (''+s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
       .replace(/'/g, '&#x27;').replace(/\//g,'&#x2F;')
@@ -117,16 +123,25 @@ class Results
     $('#error').hide()
     $('#output').hide()
     $('#intro').show()
+    $('#regex-error').hide()
 
   showError: ->
     $('#intro').hide()
     $('#output').hide()
     $('#error').show()
+    $('#regex-error').hide()
 
   showOutput: ->
     $('#intro').hide()
     $('#error').hide()
     $('#output').show()
+    $('#regex-error').hide()
+
+  showRegexError: ->
+    $('#intro').hide()
+    $('#error').hide()
+    $('#output').hide()
+    $('#regex-error').show()
 
 class App
   constructor: ->
