@@ -1,0 +1,43 @@
+{
+  "name": "scriptular",
+  "version": "1.0.0",
+  "description": "A rubular.com clone for JavaScript regular expressions",
+  "main": "application.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Open SpecRunner.html in a browser to run tests\" && exit 0",
+    "build": "cake build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonmagic/scriptular.git"
+  },
+  "keywords": [
+    "regexp",
+    "front-end"
+  ],
+  "contributors": [
+    "Jonathan Hoyt (https://github.com/jonmagic)",
+    "Brandon Keepers (https://github.com/bkeepers)",
+    "Aaron Kalin (https://github.com/martinisoft)",
+    "Ben Truyman (https://github.com/bentruyman)",
+    "John K. Paul (https://github.com/johnkpaul)",
+    "Adam Brodzinski (https://github.com/AdamBrodzinski)",
+    "brycecr (https://github.com/brycecr)",
+    "Judith Hendeveld (https://github.com/judith)",
+    "beechnut (https://github.com/beechnut)",
+    "Blair Anderson (https://github.com/blairanderson)",
+    "Vladimir Pestov (https://github.com/KozzyKoder)",
+    "Corey Leveen (https://github.com/coreyleveen)",
+    "Daniel Arthur Gallagher (https://github.com/DanArthurGallagher)",
+    "Mosh Feu (https://github.com/moshfeu)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonmagic/scriptular/issues"
+  },
+  "homepage": "https://github.com/jonmagic/scriptular#readme",
+  "devDependencies": {
+    "coffeescript": "1.12.7"
+  }
+}
