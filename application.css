@@ -172,6 +172,7 @@ a:hover {
   margin-bottom: 20px;
 }
 
+#quick_reference th,
 #quick_reference td {
   padding-right: 15px;
   line-height:1.5em;
@@ -183,12 +184,6 @@ a:hover {
   padding-right: 5px;
   text-align: center;
   width:60px;
-}
-
-#quick_reference a {
-  position: absolute;
-  top: 20px;
-  right: 20px;
 }
 
 input, textarea, #results, #groups {
@@ -278,10 +273,6 @@ input, textarea, #results, #groups {
   list-style-type: decimal;
   margin-bottom: 10px;
   padding-left: 30px;
-}
-
-#shares li {
-
 }
 
 #shares a {

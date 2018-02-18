@@ -75,16 +75,33 @@
     </div>
 
     <div id="quick_reference">
-      <div class="scrollable">
-        <h2>Modifiers:</h2>
+      <div class="scrollable">        
         <table>
+          <caption><h2>Flags:</h2></caption>
           <tr>
-            <td class="regex">i</td>
+            <th class="regex">g</th>
+            <td>Perform a global match</td>
+          </tr>
+          <tr>
+            <th class="regex">i</th>
             <td>Perform case-insensitive matching</td>
           </tr>
           <tr>
-            <td class="regex">g</td>
-            <td>Perform a global match</td>
+            <th class="regex">m</th>
+            <td>Treat beginning and end characters (^ and $) as working over multiple lines</td>
+          </tr>
+          <tr>
+            <th class="regex">u</th>
+            <td>
+              Treat the pattern as a series of Unicode code points
+              (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Regular_expression_and_Unicode_characters" rel="external noopener">
+                  See the MDN docs
+                </a>)
+            </td>
+          </tr>
+          <tr>
+            <th class="regex">y</th>
+            <td>Sticky; treat the pattern after a match as a separate pattern</td>
           </tr>
         </table>
         <h2>Brackets:</h2>
