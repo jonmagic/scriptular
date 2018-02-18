@@ -13,9 +13,9 @@ So I created [Scriptular](http://scriptular.com) and started regular expressing 
 
 ## Compiling Coffeescript in Development
 
-* clone the repo
-* npm install -g coffee-script
-* cake build
+1. clone the repo
+2. npm install
+3. npm run build
 
 ## Running Tests
 
