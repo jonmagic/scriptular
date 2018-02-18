@@ -215,8 +215,13 @@ input, textarea, #results, #groups {
 }
 
 #expression input[name=option] {
+  box-sizing: border-box;
   margin-left: 4px;
-  width: 50px;
+  width: 70px;
+}
+
+.invalid-expression, input:invalid {
+  border: 1px solid #F7296F;
 }
 
 #expression input[name=expression],
